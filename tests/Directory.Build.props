@@ -1,0 +1,11 @@
+<Project>
+    <PropertyGroup>
+		<CollectCoverage>true</CollectCoverage>
+		<IncludeTestAssembly>true</IncludeTestAssembly>
+		<CoverletOutputFormat>opencover</CoverletOutputFormat>	
+		<SonarQubeExclude>true</SonarQubeExclude>
+		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+		<EnableNETAnalyzers>False</EnableNETAnalyzers>
+    </PropertyGroup>
+</Project>
