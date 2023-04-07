@@ -106,4 +106,4 @@ Agradecemos sua contribuição para este projeto! Para contribuir, siga estas et
 4. Aguarde a revisão e aprovação das suas alterações.
 
 ## Suporte e Comunidade
-Caso você tenha dúvidas, sugestões ou queira contribuir para o projeto, entre em contato com a squad <b>Plataforma Meios de Pagamento Online</b> da tribo de Payments.
+Caso você tenha dúvidas, sugestões ou queira contribuir para o projeto, entre em contato com newton.dantas@gmail.com
