@@ -2,17 +2,17 @@
 
 ## Visão Geral
 
-Esta API é um template .NET 6 que serve como base e ponto de partida para a criação de outras APIs, seguindo padrões de boas práticas de arquitetura e desenvolvimento em .NET e C#. A API utiliza vários recursos e tecnologias, como CQRS, MediatR, DistributedCache, Polly, Entity Framework, Clean Architecture, AspNetCoreRateLimit, Serilog, FluentValidation, UnitOfWork, Mapster, entre outros.
+Esta API é um template [.NET Core 6](https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-6.0) que serve como base e ponto de partida para a criação de outras APIs, seguindo padrões de boas práticas de arquitetura e desenvolvimento em .NET e C#. A API utiliza vários recursos e tecnologias, como CQRS, MediatR, DistributedCache, Polly, Entity Framework, Clean Architecture, AspNetCoreRateLimit, Serilog, FluentValidation, UnitOfWork, Mapster, entre outros.
 
 O objetivo é facilitar o desenvolvimento de novas APIs e servir como uma referência para outros desenvolvedores.
 
-## Clean Architecture
+## Arquitetura da Solução
 
-Clean Architecture (Arquitetura Limpa é composta por camadas que promovem a separação de responsabilidades, testabilidade e manutenibilidade do projeto. 
+A solução adota o padrão [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) (Arquitetura Limpa), que é composta por camadas que promovem a separação de responsabilidades, testabilidade e manutenibilidade do projeto. 
 
 <img align="center" width="100%" height="auto" style="cursor: zoom-in; max-width: 100%" src="https://raw.githubusercontent.com/newtonCD/dotnet-webapi-template/master/.github/clean_architecture.webp" /><br/>
 
-Abaixo os detalhes de cada camada e seus componentes:
+Abaixo os detalhes de cada camada da arquitetura e seus componentes:
 
 ### 1. Domain (Domínio)
 
@@ -42,9 +42,9 @@ A camada de Aplicação contém a lógica da aplicação e coordena as interaç�
 
 ### 3. Infrastructure (Infraestrutura)
 
-A camada de Infraestrutura é responsável por implementar as interfaces definidas na camada de Aplicação e fornecer acesso a serviços externos. Esta camada pode ser dividida em Infraestrutura e Persistência.
+A camada de Infraestrutura é responsável por implementar as interfaces definidas na camada de Aplicação e fornecer acesso a serviços externos. Esta camada pode ser dividida em Infraestrutura e Persistência:
 
-#### Infrastructure
+#### *Infrastructure*
 
 A parte de Infraestrutura lida com os seguintes componentes:
 
@@ -58,7 +58,7 @@ A parte de Infraestrutura lida com os seguintes componentes:
 - **Sms Service**: o serviço de SMS é responsável por enviar mensagens de texto para os telefones dos usuários, como códigos de verificação, alertas de segurança e promoções.
 - **Third-party services**: os serviços de terceiros são integrações com APIs e serviços externos que fornecem funcionalidades adicionais à aplicação, como geolocalização, análise de dados, redes sociais entre outros.
 
-#### Persistence
+#### *Persistence*
 
 A parte de Persistência lida com os seguintes componentes:
 
@@ -71,7 +71,7 @@ A parte de Persistência lida com os seguintes componentes:
 
 ### 4. Presentation (Apresentação)
 
-A camada de Apresentação, também chamada de User Interface, é responsável por interagir com o usuário e exibir os dados e ações disponíveis na aplicação. Ela pode ser uma aplicação Web, uma API ou uma interface de linha de comando. Os seguintes componentes estão presentes nesta camada:
+A camada de Apresentação, também chamada de User Interface, é responsável por interagir com o usuário e exibir os dados e ações disponíveis na aplicação. Ela pode ser uma aplicação Web, uma API ou uma interface de linha de comando. Os seguintes componentes podem estar presentes nesta camada:
 
 - **Controllers**: são classes que gerenciam a lógica da interface de usuário, processam as requisições dos usuários e geram as respostas. Eles interagem com a camada de Aplicação para executar as ações solicitadas e atualizar a exibição.
 
@@ -79,6 +79,7 @@ A camada de Apresentação, também chamada de User Interface, é responsável p
 - **Middlewares**: são componentes que interceptam e processam as requisições e respostas antes que elas cheguem aos controladores ou retornem para o cliente. Eles podem ser usados para implementar funcionalidades como autenticação, autorização, logging e tratamento de erros.
 - **Views**: são templates que definem a estrutura e a aparência da interface de usuário. Elas são preenchidas com os dados fornecidos pelos controladores e podem incluir elementos como tabelas, formulários, gráficos e mapas.
 - **View Models**: são objetos que representam o estado e os dados necessários para renderizar uma view específica. Eles são usados para transferir dados entre os controladores e as views e podem incluir informações como listas de itens, estados de botões e mensagens de erro.
+- **Worker Service**: é um tipo de aplicação .NET que executa tarefas em segundo plano de maneira contínua e independente, sem interação direta com o usuário. Essas tarefas podem incluir operações de longa duração, processamento de mensagens de filas, monitoramento de sistemas, execução de trabalhos agendados e integração com serviços externos. O Worker Service é uma ótima opção para executar atividades que não se encaixam no modelo de requisição-resposta típico de uma aplicação Web ou API. Ele pode ser configurado para iniciar automaticamente com o sistema operacional, executar em paralelo com outras aplicações e ser gerenciado por ferramentas de monitoramento e orquestração de contêineres, como o Kubernetes. Na camada de Apresentação, um Worker Service serve para lidar com tarefas assíncronas e offload das operações de processamento intensivo da aplicação principal, melhorando a escalabilidade, a disponibilidade e o desempenho geral do sistema.
 
 ## Recursos e Componentes
 
@@ -86,59 +87,107 @@ Abaixo está uma lista dos recursos e componentes utilizados neste template e um
 
 ### CQRS (Command Query Responsibility Segregation)
 
-CQRS é um padrão arquitetônico que separa as operações de leitura e escrita em diferentes modelos, promovendo a separação de responsabilidades e melhorando o desempenho e escalabilidade da aplicação.
+[CQRS](https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs) é um padrão arquitetônico que separa as operações de leitura e escrita em diferentes modelos, promovendo a separação de responsabilidades e melhorando o desempenho e escalabilidade da aplicação.
 
 ### UnitOfWork
 
-UnitOfWork é um padrão de design que gerencia a persistência dos dados de maneira consistente e simplifica a manipulação das transações.
+[UnitOfWork](https://www.devmedia.com.br/unit-of-work-o-padrao-de-unidade-de-trabalho-net/25811) é um padrão de design que gerencia a persistência dos dados de maneira consistente e simplifica a manipulação das transações.
 
 ### ProblemDetails
 
-ProblemDetails é um padrão de mensagens de erro no formato JSON que segue as diretrizes da RFC 7807. Ele permite padronizar as respostas de erro da API e facilitar o tratamento e a compreensão dos erros pelos clientes da API.
+[ProblemDetails](https://github.com/khellang/Middleware) é um padrão de mensagens de erro no formato JSON que segue as diretrizes da RFC 7807. Ele permite padronizar as respostas de erro da API e facilitar o tratamento e a compreensão dos erros pelos clientes da API.
 
 ### AspNetCoreRateLimit
 
-AspNetCoreRateLimit é uma biblioteca para limitar a taxa de requisições às APIs, protegendo a aplicação contra ataques de negação de serviço (DoS) e garantindo a disponibilidade dos recursos.
+[AspNetCoreRateLimit](https://github.com/stefanprodan/AspNetCoreRateLimit) é uma biblioteca para limitar a taxa de requisições às APIs, protegendo a aplicação contra ataques de negação de serviço (DoS) e garantindo a disponibilidade dos recursos.
 
 ### Distributed Cache
 
-Distributed Cache é um mecanismo de cache distribuído que permite armazenar dados em cache de maneira centralizada e compartilhada entre diferentes instâncias da aplicação, melhorando o desempenho e a escalabilidade.
+[Distributed Cache](https://github.com/dotnet/runtime) é um mecanismo de cache distribuído que permite armazenar dados em cache de maneira centralizada e compartilhada entre diferentes instâncias da aplicação, melhorando o desempenho e a escalabilidade.
 
 ### Entity Framework Core
 
-Entity Framework Core é um ORM (Object-Relational Mapper) para .NET que permite o mapeamento entre objetos de domínio e as entidades do banco de dados, simplificando o acesso e a manipulação dos dados.
+[Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) é um ORM (Object-Relational Mapper) para .NET que permite o mapeamento entre objetos de domínio e as entidades do banco de dados, simplificando o acesso e a manipulação dos dados.
 
 ### FluentValidation
 
-FluentValidation é uma biblioteca para validar os objetos de domínio, garantindo a consistência e integridade dos dados.
+[FluentValidation](https://fluentvalidation.net/) é uma biblioteca para validar os objetos de domínio, garantindo a consistência e integridade dos dados.
 
 ### Mapster
 
-Mapster é uma biblioteca de mapeamento de objetos para .NET, que facilita a conversão de objetos entre diferentes camadas e modelos da aplicação, como entidades, DTOs e ViewModels.
+[Mapster](https://github.com/MapsterMapper/Mapster) é uma biblioteca de mapeamento de objetos para .NET, que facilita a conversão de objetos entre diferentes camadas e modelos da aplicação, como entidades, DTOs e ViewModels.
 
 ### MediatR
 
-MediatR é uma biblioteca que permite a implementação do padrão de design "Mediator" em .NET, facilitando a comunicação entre os diferentes componentes da aplicação.
+[MediatR](https://github.com/jbogard/MediatR) é uma biblioteca que permite a implementação do padrão de design "Mediator" em .NET, facilitando a comunicação entre os diferentes componentes da aplicação.
 
 ### Polly
 
-Polly é uma biblioteca de resiliência e tolerância a falhas para .NET, que permite a implementação de políticas, como Retry e Circuit Breaker, para lidar com falhas temporárias e proteger a aplicação contra falhas.
+[Polly](https://github.com/App-vNext/Polly) é uma biblioteca de resiliência e tolerância a falhas para .NET, que permite a implementação de políticas, como Retry e Circuit Breaker, para lidar com falhas temporárias e proteger a aplicação contra falhas.
 
 ### Serilog
 
-Serilog é uma biblioteca de logging estruturado para .NET que permite a gravação e monitoramento dos eventos e erros da aplicação, facilitando a análise e a solução de problemas. Possui uma vasta variedade de plugins permitindo gravar os logs em diferentes destinos, desde o simples console até num ELK ou banco de dados.
+[Serilog](https://serilog.net/) é uma biblioteca de logging estruturado para .NET que permite a gravação e monitoramento dos eventos e erros da aplicação, facilitando a análise e a solução de problemas. Possui uma vasta variedade de plugins permitindo gravar os logs em diferentes destinos, desde o simples console até num ELK ou banco de dados.
 
 ### Swagger
 
-Swagger é uma ferramenta que facilita a documentação, a visualização e a interação com as APIs RESTful. Neste projeto, é usado para gerar documentação e interface gráfica com versionamento para a API.
+[Swagger](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) é uma ferramenta que facilita a documentação, a visualização e a interação com as APIs RESTful. Neste projeto, é usado para gerar documentação e interface gráfica com versionamento para a API.
 
-### xUnit, Moq e FluentAssertions
+### Throw
 
-xUnit é um framework de testes para .NET, Moq é uma biblioteca para criar objetos mock (simulados) e FluentAssertions é uma biblioteca de asserções para tornar os testes mais legíveis e expressivos. Essas ferramentas são utilizadas na criação de testes unitários e de integração para garantir a qualidade e a correção do código.
+[Throw](https://github.com/amantinband/throw) é um componente do tipo Guard Clause que fornece uma abordagem simplificada e mais expressiva para lidar com exceções e erros em aplicativos .NET. Com ele, é possível criar exceções personalizadas, definir mensagens de erro detalhadas e incluir informações adicionais sobre o contexto do erro. Ele também permite encadear exceções, tornando mais fácil rastrear a origem do problema.
+
+## Para os Testes Unitários
+
+### xUnit
+
+[xUnit](https://github.com/xunit/xunit) é um framework de testes unitários para a plataforma .NET. Ele é uma ferramenta popular e moderna para escrever e executar testes automatizados em projetos .NET e C#. O xUnit é projetado com uma sintaxe clara e fácil de ler, além de oferecer suporte a atributos e convenções de teste. Ele ajuda os desenvolvedores a garantir que o código funcione conforme o esperado, a detectar regressões e a validar a lógica de negócios em um ambiente isolado e controlado.
+
+### FluentAssertions
+
+[FluentAssertions](https://github.com/fluentassertions/fluentassertions) é uma biblioteca de asserções para .NET que oferece uma sintaxe fluente e fácil de ler para escrever asserções em testes unitários. A biblioteca fornece uma ampla variedade de métodos de extensão para validar o resultado das operações e comparar objetos complexos. Com o FluentAssertions, os desenvolvedores podem escrever asserções de teste mais expressivas e legíveis, melhorando a qualidade e a manutenção dos testes unitários. Além disso, a biblioteca fornece mensagens de erro detalhadas e formatadas quando uma asserção falha, facilitando a identificação e correção dos problemas.
+
+### Moq
+
+[Moq](https://github.com/moq/moq4) é uma biblioteca de simulação (mocking) para .NET que permite criar objetos fictícios (mocks) de classes e interfaces em tempo de execução. Esses objetos fictícios são úteis para simular o comportamento de dependências externas ou internas durante os testes unitários. Ao usar o Moq, os desenvolvedores podem substituir as partes reais do sistema por versões simuladas que imitam o comportamento esperado. Isso permite testar o código de maneira isolada, sem depender de recursos externos, como bancos de dados ou serviços da Web.
+
+## C# Scripting
+
+Este projeto inclui um script [CSX](https://visualstudiomagazine.com/articles/2021/06/14/csharp-scripting.aspx) para gerar novas entidades e toda a estrutura do CQRS, facilitando a consistência na estrutura de pastas e arquivos da solução. 
+
+### Como utilizar o script CSX?
+
+Para adicionar novas entidades e endpoints à API da solução, siga os passos abaixo:
+
+1. Instale a ferramenta global <b>dotnet-script</b> executando no terminal o seguinte comando:  
+>     dotnet tool install -g dotnet-script
+
+2. Vá para a pasta <b>scripts</b> onde encontra-se o arquivo <b>class-generator.csx</b>
+
+3. Para gerar uma nova classe de entidade e todos os seus arquivos derivados, execute o comando abaixo:  
+>     dotnet script class-generator.csx -- "NOME_DA_ENTIDADE"
+
+4. Como regra e recomendação para o nome da entidade, utilize nomes somente em inglês, sempre no singular e entre aspas.
+
+5. O próprio script cuidará de pluralizar o nome da entidade quando for necessário e também ajustará os nomes no formato Pascal Case.
+
+6. Como resultado da execução desse script, serão criados vários arquivos e pastas em locais distintos da solução. Serão criadas as classes de domínio, interfaces, repositório, CQRS, controller entre outras coisas.
+
+7. Ao final da execução, e não ocorrendo nenhum erro, basta rodar o build da solução e você terá um CRUD básico 100% funcional rodando num banco de dados na memória.
+
+8. Altere e adicione os campos e propriedades necessárias à nova entidade criada e personalize a solução do modo que atenda às necessidades do seu projeto.
+
+9. Implemente as regras de negócio e validações conforme necessário.
+
+10. Se necessário, atualize a documentação do Swagger.
+
+## Configuração do banco de dados
+
+O template está configurado para usar 2 bancos de dados na memória para fins de demonstração. Isso garante que todos os usuários possam executar a solução sem a necessidade de ter que configurar infraestrutura adicional (por exemplo, SQL Server). Você pode optar por desligar o banco de dados na memória editando a propriedade "UseInMemoryDatabase" que está no appsettings.
 
 ## Contribuindo
 
-Agradecemos sua contribuição para este projeto! Para contribuir, siga estas etapas:
+Agradeço sua contribuição para este projeto! Para contribuir, siga as etapas abaixo:
 
 1. Faça um fork do repositório.
 2. Crie uma branch com suas alterações.
