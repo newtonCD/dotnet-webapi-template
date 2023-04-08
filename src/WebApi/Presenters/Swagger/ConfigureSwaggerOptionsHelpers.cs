@@ -10,9 +10,9 @@ internal static class ConfigureSwaggerOptionsHelpers
 {
     public static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
     {
-        var assembly = Assembly.GetEntryAssembly();
+        Assembly assembly = Assembly.GetEntryAssembly();
 
-        var info = new OpenApiInfo()
+        OpenApiInfo info = new OpenApiInfo()
         {
             Title = "Template API",
             Description = assembly.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description + "<br /> Assembly version: " + assembly.GetName().Version?.ToString(),

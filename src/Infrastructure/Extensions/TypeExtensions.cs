@@ -19,7 +19,7 @@ public static class TypeExtensions
     /// <param name="genericType"></param>
     public static bool IsAssignableToGenericType(this Type givenType, Type genericType)
     {
-        Type[] interfaceTypes = givenType.GetInterfaces();
+        Type[] interfaceTypes = givenType?.GetInterfaces();
 
         foreach (Type it in interfaceTypes)
         {
