@@ -1,3 +1,9 @@
+[![build](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/dotnet.yml/badge.svg)](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/dotnet.yml)
+[![](https://img.shields.io/github/release/newtonCD/dotnet-webapi-template.svg?label=latest%20release)](https://github.com/newtonCD/dotnet-webapi-template/releases/latest)
+[![Coverage Status](https://coveralls.io/repos/github/newtonCD/dotnet-webapi-template/badge.svg?branch=master)](https://coveralls.io/github/newtonCD/dotnet-webapi-template?branch=master)
+
+![Alt](https://repobeats.axiom.co/api/embed/a7a22a9d558be708b00e6ea73142208a8b0f1f05.svg "Repobeats analytics image")
+
 # Dotnet Web API Template (.NET 6)
 
 ## Visão Geral
