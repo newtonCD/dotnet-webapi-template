@@ -15,7 +15,7 @@ public class SwaggerDefaultValues : IOperationFilter
         if (operation is null || context is null)
             return;
 
-        var apiDescription = context.ApiDescription;
+        ApiDescription apiDescription = context.ApiDescription;
         operation.Deprecated |= apiDescription.IsDeprecated();
 
         if (operation.Parameters == null)
@@ -23,7 +23,7 @@ public class SwaggerDefaultValues : IOperationFilter
 
         foreach (var parameter in operation.Parameters)
         {
-            var description = apiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
+            ApiParameterDescription description = apiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
 
             parameter.Description ??= description.ModelMetadata?.Description;
 
