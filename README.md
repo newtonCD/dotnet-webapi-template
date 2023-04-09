@@ -1,6 +1,6 @@
-[![build](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/dotnet.yml/badge.svg)](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/dotnet.yml)
+[![Build](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/build.yml/badge.svg)](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/build.yml)
 [![](https://img.shields.io/github/release/newtonCD/dotnet-webapi-template.svg?label=latest%20release)](https://github.com/newtonCD/dotnet-webapi-template/releases/latest)
-[![Coverage Status](https://coveralls.io/repos/github/newtonCD/dotnet-webapi-template/badge.svg?branch=master)](https://coveralls.io/github/newtonCD/dotnet-webapi-template?branch=master)
+[![codecov](https://codecov.io/gh/newtonCD/dotnet-webapi-template/branch/develop/graph/badge.svg?token=L9SNDH1NJB)](https://codecov.io/gh/newtonCD/dotnet-webapi-template)
 
 ![Alt](https://repobeats.axiom.co/api/embed/a7a22a9d558be708b00e6ea73142208a8b0f1f05.svg "Repobeats analytics image")
 
