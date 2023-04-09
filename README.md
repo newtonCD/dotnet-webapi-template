@@ -1,4 +1,4 @@
-[![build](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/dotnet.yml/badge.svg)](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/dotnet.yml)
+[![Build](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/build.yml/badge.svg)](https://github.com/newtonCD/dotnet-webapi-template/actions/workflows/build.yml)
 [![](https://img.shields.io/github/release/newtonCD/dotnet-webapi-template.svg?label=latest%20release)](https://github.com/newtonCD/dotnet-webapi-template/releases/latest)
 [![codecov](https://codecov.io/gh/newtonCD/dotnet-webapi-template/branch/develop/graph/badge.svg?token=L9SNDH1NJB)](https://codecov.io/gh/newtonCD/dotnet-webapi-template)
 
