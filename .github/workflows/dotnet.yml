@@ -60,3 +60,6 @@ jobs:
         dotnet build --no-restore --configuration Release
         dotnet test --collect "Code Coverage"
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
