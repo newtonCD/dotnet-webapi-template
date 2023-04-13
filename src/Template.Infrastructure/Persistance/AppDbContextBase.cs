@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 using Template.Domain.Entities;
 using Template.Domain.Interfaces;
 
@@ -13,8 +14,9 @@ public abstract class AppDbContextBase : DbContext, IAppDbContextBase
     }
 
     public DbSet<Customer> Customers => Set<Customer>();
-// TEMPLATE - nao remover ou alterar essa linha
+    // TEMPLATE - nao remover ou alterar essa linha
 
+    [ExcludeFromCodeCoverage]
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder?.ApplyConfigurationsFromAssembly(typeof(AppDbContextBase).Assembly);

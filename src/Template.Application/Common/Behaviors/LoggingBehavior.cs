@@ -5,8 +5,8 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
-using Template.Application.Extensions;
 using Template.Application.Settings;
+using Template.Shared.Extensions;
 using Throw;
 
 namespace Template.Application.Common.Behaviors;

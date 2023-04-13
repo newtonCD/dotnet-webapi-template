@@ -1,4 +1,5 @@
-﻿using Template.Application.Extensions;
+﻿
+using Template.Shared.Extensions;
 
 namespace Template.Application.Tests.Extensions;
 

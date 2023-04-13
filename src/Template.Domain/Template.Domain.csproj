@@ -18,4 +18,8 @@
         <InternalsVisibleTo Include="Template.WebApi.Tests" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Template.Shared\Template.Shared.csproj" />
+    </ItemGroup>
+
 </Project>
