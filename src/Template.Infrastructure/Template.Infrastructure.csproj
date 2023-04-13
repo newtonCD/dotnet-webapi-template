@@ -20,6 +20,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Template.Application\Template.Application.csproj" />
+        <ProjectReference Include="..\Template.Shared\Template.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

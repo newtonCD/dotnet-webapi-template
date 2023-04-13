@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Template.Application.Extensions;
+namespace Template.Shared.Extensions;
 
 public static class ObjectExtensions
 {
