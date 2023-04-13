@@ -3,12 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
+using System.Diagnostics.CodeAnalysis;
 using Template.Application.Common;
 using Template.Application.Common.Interfaces;
 using Template.Infrastructure.Persistance;
 
 namespace Template.WebApi.Configuration;
 
+[ExcludeFromCodeCoverage]
 public class InfrastructureServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)

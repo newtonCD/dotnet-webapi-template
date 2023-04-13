@@ -1,12 +1,14 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Template.Application.Common.Interfaces;
 using Template.Application.Settings;
 using Template.Infrastructure.Caching;
 
 namespace Template.WebApi.Configuration;
 
+[ExcludeFromCodeCoverage]
 public class CacheServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)

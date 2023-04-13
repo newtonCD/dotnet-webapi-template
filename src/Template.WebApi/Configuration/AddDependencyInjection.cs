@@ -2,11 +2,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
 namespace Template.WebApi.Configuration;
 
+[ExcludeFromCodeCoverage]
 public static class AddDependencyInjection
 {
     public static IServiceCollection InstallServices(
