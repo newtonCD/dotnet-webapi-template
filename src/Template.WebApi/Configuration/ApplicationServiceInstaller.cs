@@ -2,10 +2,12 @@
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 using Template.Application.Common.Behaviors;
 
 namespace Template.WebApi.Configuration;
 
+[ExcludeFromCodeCoverage]
 public class ApplicationServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)

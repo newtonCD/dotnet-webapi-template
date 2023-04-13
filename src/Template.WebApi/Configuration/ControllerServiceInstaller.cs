@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using Template.WebApi.Filters;
 
 namespace Template.WebApi.Configuration;
 
+[ExcludeFromCodeCoverage]
 public class ControllerServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection services, IConfiguration configuration)
