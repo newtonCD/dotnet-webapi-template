@@ -1,5 +1,5 @@
-﻿using Application.Features.Customers.Commands;
-using FluentValidation.TestHelper;
+﻿using FluentValidation.TestHelper;
+using Template.Application.Features.Customers.Commands;
 
 namespace Template.Application.Tests.Features.Customers.Commands;
 

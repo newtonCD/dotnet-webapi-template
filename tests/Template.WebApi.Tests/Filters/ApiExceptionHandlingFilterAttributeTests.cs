@@ -1,6 +1,4 @@
-﻿using Application.Common.Exceptions;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
@@ -10,8 +8,9 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WebApi.Filters;
-using WebApi.Presenters;
+using Template.Application.Common.Exceptions;
+using Template.WebApi.Filters;
+using Template.WebApi.Presenters;
 
 namespace Template.WebApi.Tests.Filters;
 

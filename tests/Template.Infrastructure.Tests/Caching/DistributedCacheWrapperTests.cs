@@ -1,12 +1,9 @@
-﻿using Infrastructure.Caching;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Template.Infrastructure.Caching;
 
 namespace Template.Infrastructure.Tests.Caching;
 

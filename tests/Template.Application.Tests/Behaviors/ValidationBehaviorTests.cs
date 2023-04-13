@@ -1,10 +1,10 @@
-﻿using Application.Common.Behaviors;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using CustomValidationException = Application.Common.Exceptions.ValidationException;
+using Template.Application.Common.Behaviors;
+using CustomValidationException = Template.Application.Common.Exceptions.ValidationException;
 
 namespace Template.Application.Tests.Behaviors;
 

@@ -1,5 +1,5 @@
-﻿using Application.Common;
-using Application.Common.Interfaces;
+﻿using Template.Application.Common;
+using Template.Application.Common.Interfaces;
 
 namespace Template.Application.Tests;
 

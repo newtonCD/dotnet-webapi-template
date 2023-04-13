@@ -1,7 +1,5 @@
-﻿using Xunit;
-using FluentValidation.TestHelper;
-using Application.Features.Customers.Commands;
-using Application.Features.Customers.Queries;
+﻿using FluentValidation.TestHelper;
+using Template.Application.Features.Customers.Queries;
 
 namespace Template.Application.Tests.Features.Customers.Queries;
 

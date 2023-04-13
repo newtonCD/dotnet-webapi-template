@@ -1,22 +1,21 @@
 using FluentAssertions;
 using NetArchTest.Rules;
-using System;
 
 namespace CleanArchitecture.Tests;
 
 public class CleanArchitectureTests
 {
-    private const string DomainNamespace = "Domain";
-    private const string ApplicationNamespace = "Application";
-    private const string InfrastructureNamespace = "Infrastructure";
-    private const string WebNamespace = "WebApi";
+    private const string DomainNamespace = "Template.Domain";
+    private const string ApplicationNamespace = "Template.Application";
+    private const string InfrastructureNamespace = "Template.Infrastructure";
+    private const string WebNamespace = "Template.WebApi";
 
 
     [Fact]
     public void Domain_Should_Not_Have_Dependency_On_Other_Projects()
     {
         // Arrange
-        var assembly = typeof(Domain.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.Domain.AssemblyEntryPoint).Assembly;
 
         var otherProjects = new[]
         {
@@ -40,7 +39,7 @@ public class CleanArchitectureTests
     public void Application_Should_Not_Have_Dependency_On_Other_Projects()
     {
         // Arrange
-        var assembly = typeof(Application.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.Application.AssemblyEntryPoint).Assembly;
 
         var otherProjects = new[]
         {
@@ -63,7 +62,7 @@ public class CleanArchitectureTests
     public void Handlers_Should_Have_Dependency_On_Domain()
     {
         // Arrange
-        var assembly = typeof(Application.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.Application.AssemblyEntryPoint).Assembly;
 
         //Act
         var testResult = Types
@@ -82,7 +81,7 @@ public class CleanArchitectureTests
     public void Infrastructure_Should_Not_Have_Dependency_On_Other_Projects()
     {
         // Arrange
-        var assembly = typeof(Infrastructure.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.Infrastructure.AssemblyEntryPoint).Assembly;
 
         var otherProjects = new[]
         {
@@ -104,7 +103,7 @@ public class CleanArchitectureTests
     public void Controllers_Should_Have_Dependency_On_MediatR()
     {
         // Arrange
-        var assembly = typeof(WebApi.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.WebApi.AssemblyEntryPoint).Assembly;
 
         //Act
         var testResult = Types

@@ -1,6 +1,6 @@
-﻿using Domain.Entities;
-using Domain.Events.CustomerEvents;
-using System.Linq;
+﻿using System.Linq;
+using Template.Domain.Entities;
+using Template.Domain.Events.CustomerEvents;
 
 namespace Template.Domain.Tests.Entities;
 

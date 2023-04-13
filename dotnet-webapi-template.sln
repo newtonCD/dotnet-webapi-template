@@ -3,21 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8D87D42D-EA33-4350-A169-8B38FFCEC7D9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F1905CE7-D2B6-4EE5-BEC4-1BDEA59E8784}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{979B5A0D-1F92-4121-B839-7C3CA135E8D2}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{D0B4EE2E-852E-4F24-B5B6-DCB37252F686}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{77AF6C25-E62F-4FD5-B70C-AF7F1D8617A9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{B0A410C3-5962-4B9E-B264-5A68CC46D7B0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{32891F88-D6DB-487B-87EA-5B89E1F97AD3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "src\WebApi\WebApi.csproj", "{19454E59-D001-45D8-8B9E-51016D3414B6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmark", "benchmark", "{868DC8F3-820B-4AF7-BF23-8AA544B5AB77}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82331A12-166C-47B8-8CB4-00B074571A87}"
 	ProjectSection(SolutionItems) = preProject
@@ -37,14 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		stylecop.json = stylecop.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmark", "benchmark", "{868DC8F3-820B-4AF7-BF23-8AA544B5AB77}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{052CF9F9-329D-4D26-8C26-CCDC124FE824}"
-	ProjectSection(SolutionItems) = preProject
-		scripts\class-generator.csx = scripts\class-generator.csx
-		scripts\Humanizer.dll = scripts\Humanizer.dll
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{B0CBE225-634C-489A-A2D9-26012126EA2F}"
 	ProjectSection(SolutionItems) = preProject
 		.github\clean_architecture.webp = .github\clean_architecture.webp
@@ -55,17 +33,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\build.yml = .github\workflows\build.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{052CF9F9-329D-4D26-8C26-CCDC124FE824}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\class-generator.csx = scripts\class-generator.csx
+		scripts\Humanizer.dll = scripts\Humanizer.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8D87D42D-EA33-4350-A169-8B38FFCEC7D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{979B5A0D-1F92-4121-B839-7C3CA135E8D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Application", "src\Template.Application\Template.Application.csproj", "{77AF6C25-E62F-4FD5-B70C-AF7F1D8617A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Domain", "src\Template.Domain\Template.Domain.csproj", "{B0A410C3-5962-4B9E-B264-5A68CC46D7B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{D0B4EE2E-852E-4F24-B5B6-DCB37252F686}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Infrastructure", "src\Template.Infrastructure\Template.Infrastructure.csproj", "{32891F88-D6DB-487B-87EA-5B89E1F97AD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{F9E97771-01D9-4056-B52C-68C5D3D887F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.WebApi", "src\Template.WebApi\Template.WebApi.csproj", "{19454E59-D001-45D8-8B9E-51016D3414B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F1905CE7-D2B6-4EE5-BEC4-1BDEA59E8784}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Tests", "tests\CleanArchitecture.Tests\CleanArchitecture.Tests.csproj", "{22955390-B8A4-4947-ADE4-360BB6E7C23F}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Application.Tests", "tests\Template.Application.Tests\Template.Application.Tests.csproj", "{7935873C-9C98-4177-A2B3-52559DFF793A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Domain.Tests", "tests\Template.Domain.Tests\Template.Domain.Tests.csproj", "{16AFE037-9F61-467F-BE49-E055E2DD8F6D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Infrastructure.Tests", "tests\Template.Infrastructure.Tests\Template.Infrastructure.Tests.csproj", "{64264EB7-18B8-40BE-ABE0-FE0FDE56FC95}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.WebApi.Tests", "tests\Template.WebApi.Tests\Template.WebApi.Tests.csproj", "{49EA0312-EF9D-4403-A7ED-EC27CF2D3B57}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Domain.Tests", "tests\Template.Domain.Tests\Template.Domain.Tests.csproj", "{16AFE037-9F61-467F-BE49-E055E2DD8F6D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{F9E97771-01D9-4056-B52C-68C5D3D887F1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Tests", "tests\CleanArchitecture.Tests\CleanArchitecture.Tests.csproj", "{22955390-B8A4-4947-ADE4-360BB6E7C23F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

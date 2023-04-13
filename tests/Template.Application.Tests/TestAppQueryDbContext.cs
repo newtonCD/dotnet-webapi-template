@@ -1,6 +1,6 @@
-using Domain.Entities;
-using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 
 namespace Template.Application.Tests;
 

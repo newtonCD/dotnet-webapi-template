@@ -1,9 +1,5 @@
-﻿using Domain.Events.CustomerEvents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Template.Domain.Events.CustomerEvents;
 
 namespace Template.Domain.Tests.Events.CustomerEvents;
 
