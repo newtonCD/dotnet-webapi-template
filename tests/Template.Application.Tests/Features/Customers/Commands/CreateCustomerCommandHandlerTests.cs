@@ -1,15 +1,15 @@
-﻿using Application.Common;
-using Application.Common.Interfaces;
-using Application.Common.Models;
-using Application.Features.Customers.Commands;
-using Domain.Entities;
-using Domain.Interfaces;
-using MediatR;
+﻿using MediatR;
 using Moq;
 using Polly;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Template.Application.Common;
+using Template.Application.Common.Interfaces;
+using Template.Application.Common.Models;
+using Template.Application.Features.Customers.Commands;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 
 namespace Template.Application.Tests.Features.Customers.Commands;
 

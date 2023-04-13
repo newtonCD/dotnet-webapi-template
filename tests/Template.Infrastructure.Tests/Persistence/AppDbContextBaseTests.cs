@@ -1,6 +1,6 @@
-﻿using Domain.Entities;
-using Infrastructure.Persistance;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Template.Domain.Entities;
+using Template.Infrastructure.Persistance;
 
 namespace Template.Infrastructure.Tests.Persistence;
 

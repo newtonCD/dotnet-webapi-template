@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="11.5.2" />
+        <PackageReference Include="MediatR" Version="12.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.15" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Template.Domain.Tests" />
+        <InternalsVisibleTo Include="Template.Application.Tests" />
+        <InternalsVisibleTo Include="Template.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Template.WebApi.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Template.Shared\Template.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

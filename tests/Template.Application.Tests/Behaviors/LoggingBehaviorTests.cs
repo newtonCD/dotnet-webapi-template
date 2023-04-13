@@ -1,13 +1,11 @@
-﻿using Application.Common.Behaviors;
-using Application.Settings;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
-using Moq;
 using System.Threading;
 using System.Threading.Tasks;
-using Xunit;
+using Template.Application.Common.Behaviors;
+using Template.Application.Settings;
 
 namespace Template.Application.Tests.Behaviors;
 

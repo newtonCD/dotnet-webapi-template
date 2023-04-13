@@ -1,9 +1,9 @@
-﻿using Domain.Interfaces;
-using Infrastructure.Persistance;
-using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Template.Domain.Interfaces;
+using Template.Infrastructure.Persistance;
+using Template.Infrastructure.Repositories;
 
 namespace Template.Infrastructure.Tests.Repositories;
 

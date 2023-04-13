@@ -1,7 +1,4 @@
-﻿using Application.Common.Models;
-using Application.Features.Customers.Commands;
-using Application.Features.Customers.Queries;
-using FluentAssertions;
+﻿using FluentAssertions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -12,8 +9,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using WebApi.Controllers.V1;
-using WebApi.Presenters;
+using Template.Application.Common.Models;
+using Template.Application.Features.Customers.Commands;
+using Template.Application.Features.Customers.Queries;
+using Template.WebApi.Controllers.V1;
+using Template.WebApi.Presenters;
 
 namespace Template.WebApi.Tests.Controllers;
 

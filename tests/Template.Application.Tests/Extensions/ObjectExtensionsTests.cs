@@ -1,9 +1,5 @@
-﻿using Application.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Template.Shared.Extensions;
 
 namespace Template.Application.Tests.Extensions;
 

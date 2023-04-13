@@ -85,14 +85,14 @@ void GenerateFolders(string entityName)
 
 void GenerateEntity(string entityName)
 {
-    var entityCode = $@"using Domain.Common;
-using Domain.Events.{entityName}Events;
+    var entityCode = $@"using Template.Domain.Common;
+using Template.Domain.Events.{entityName}Events;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Domain.Entities;
+namespace Template.Domain.Entities;
 
 public class {entityName} : BaseAuditableEntity
 {{
@@ -151,7 +151,7 @@ void GenerateCreatedEventNotification(string entityName)
     var createdEventNotificationCode = $@"using MediatR;
 using System;
 
-namespace Domain.Events.{entityName}Events;
+namespace Template.Domain.Events.{entityName}Events;
 
 public class {entityName}CreatedEventNotification : INotification
 {{
@@ -177,7 +177,7 @@ void GenerateDeletedEventNotification(string entityName)
     var deletedEventNotificationCode = $@"using MediatR;
 using System;
 
-namespace Domain.Events.{entityName}Events;
+namespace Template.Domain.Events.{entityName}Events;
 
 public class {entityName}DeletedEventNotification : INotification
 {{
@@ -199,7 +199,7 @@ void GenerateUpdatedEventNotification(string entityName)
     var updatedEventNotificationCode = $@"using MediatR;
 using System;
 
-namespace Domain.Events.{entityName}Events;
+namespace Template.Domain.Events.{entityName}Events;
 
 public class {entityName}UpdatedEventNotification : INotification
 {{
@@ -222,9 +222,9 @@ public class {entityName}UpdatedEventNotification : INotification
 
 void GenerateDomainInterface(string entityName)
 {
-    var domainInterfaceCode = $@"using Domain.Entities;
+    var domainInterfaceCode = $@"using Template.Domain.Entities;
 
-namespace Domain.Interfaces;
+namespace Template.Domain.Interfaces;
 
 public interface I{entityName}Repository : IBaseRepository<{entityName}>
 {{
@@ -235,7 +235,7 @@ public interface I{entityName}Repository : IBaseRepository<{entityName}>
 
 void GenerateDTO(string entityName)
 {
-    var dtoCode = $@"namespace Application.Common.Models.DTOs;
+    var dtoCode = $@"namespace Template.Application.Common.Models.DTOs;
 
 public class {entityName}Dto
 {{
@@ -249,11 +249,11 @@ public class {entityName}Dto
 
 void GenerateConfiguration(string entityName)
 {
-    var configurationsCode = $@"using Domain.Entities;
+    var configurationsCode = $@"using Template.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Configurations;
+namespace Template.Infrastructure.Configurations;
 
 public class {entityName}Configuration : IEntityTypeConfiguration<{entityName}>
 {{
@@ -275,11 +275,11 @@ public class {entityName}Configuration : IEntityTypeConfiguration<{entityName}>
 
 void GenerateRepository(string entityName)
 {
-    var repositoryCode = $@"using Domain.Entities;
-using Domain.Interfaces;
-using Infrastructure.Persistance;
+    var repositoryCode = $@"using Template.Domain.Entities;
+using Template.Domain.Interfaces;
+using Template.Infrastructure.Persistance;
 
-namespace Infrastructure.Repositories;
+namespace Template.Infrastructure.Repositories;
 
 public class {entityName}Repository : BaseRepository<{entityName}>, I{entityName}Repository
 {{
@@ -294,10 +294,10 @@ public class {entityName}Repository : BaseRepository<{entityName}>, I{entityName
 
 void GenerateController(string entityName)
 {
-    var controllerCode = $@"using Application.Common.Exceptions;
-using Application.Common.Models;
-using Application.Features.{entityNamePlularized}.Commands;
-using Application.Features.{entityNamePlularized}.Queries;
+    var controllerCode = $@"using Template.Application.Common.Exceptions;
+using Template.Application.Common.Models;
+using Template.Application.Features.{entityNamePlularized}.Commands;
+using Template.Application.Features.{entityNamePlularized}.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -305,9 +305,9 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Throw;
-using WebApi.Presenters;
+using Template.WebApi.Presenters;
 
-namespace WebApi.Controllers.V1;
+namespace Template.WebApi.Controllers.V1;
 
 public sealed class {entityName}Controller : ApiControllerBase
 {{
@@ -423,10 +423,10 @@ void GenerateCQRSFiles(string entityName)
 {
     // Commands
 
-    var createCommandCode = $@"using Application.Common.Models;
+    var createCommandCode = $@"using Template.Application.Common.Models;
 using MediatR;
 
-namespace Application.Features.{entityNamePlularized}.Commands;
+namespace Template.Application.Features.{entityNamePlularized}.Commands;
 
 /// <summary>
 /// Create{entityName}Command representa um comando para criar um novo {entityNameLower}.
@@ -436,16 +436,16 @@ public sealed record Create{entityName}Command(string Campo01, string Campo02) :
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Create{entityName}Command.cs", createCommandCode);
     Console.WriteLine("Arquivo criado: Create{0}Command.cs", entityName);
 
-    var createCommandHandlerCode = $@"using Application.Common.Models;
-using Domain.Entities;
-using Domain.Interfaces;
+    var createCommandHandlerCode = $@"using Template.Application.Common.Models;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Throw;
 
-namespace Application.Features.{entityNamePlularized}.Commands;
+namespace Template.Application.Features.{entityNamePlularized}.Commands;
 
 /// <summary>
 /// Create{entityName}CommandHandler é responsável por lidar com a criação de um novo {entityNameLower}.
@@ -500,10 +500,10 @@ public sealed class Create{entityName}CommandHandler : IRequestHandler<Create{en
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Create{entityName}CommandHandler.cs", createCommandHandlerCode);
     Console.WriteLine("Arquivo criado: Create{0}CommandHandler.cs", entityName);
 
-    var createCommandValidatorCode = $@"using Domain.Constants;
+    var createCommandValidatorCode = $@"using Template.Domain.Constants;
 using FluentValidation;
 
-namespace Application.Features.{entityNamePlularized}.Commands;
+namespace Template.Application.Features.{entityNamePlularized}.Commands;
 
 public sealed class Create{entityName}CommandValidator : AbstractValidator<Create{entityName}Command>
 {{
@@ -518,7 +518,7 @@ public sealed class Create{entityName}CommandValidator : AbstractValidator<Creat
 
     var deleteCommandCode = $@"using MediatR;
 
-namespace Application.Features.{entityNamePlularized}.Commands;
+namespace Template.Application.Features.{entityNamePlularized}.Commands;
 
 /// <summary>
 /// Delete{entityName}Command é responsável por representar a requisição de exclusão de um {entityNameLower}.
@@ -528,16 +528,16 @@ public sealed record Delete{entityName}Command(int Id) : IRequest;
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Delete{entityName}Command.cs", deleteCommandCode);
     Console.WriteLine("Arquivo criado: Delete{0}Command.cs", entityName);
 
-    var deleteCommandHandlerCode = $@"using Application.Common.Exceptions;
-using Domain.Entities;
-using Domain.Interfaces;
+    var deleteCommandHandlerCode = $@"using Template.Application.Common.Exceptions;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Throw;
 
-namespace Application.Features.{entityNamePlularized}.Commands;
+namespace Template.Application.Features.{entityNamePlularized}.Commands;
 
 /// <summary>
 /// Delete{entityName}CommandHandler é responsável por processar o comando Delete{entityName}Command.
@@ -593,7 +593,7 @@ public sealed class Delete{entityName}CommandHandler : IRequestHandler<Delete{en
 
     var updateCommandCode = $@"using MediatR;
 
-namespace Application.Features.{entityNamePlularized}.Commands;
+namespace Template.Application.Features.{entityNamePlularized}.Commands;
 
 /// <summary>
 /// Update{entityName}Command é responsável por representar a requisição de atualização de um {entityNameLower}.
@@ -603,16 +603,16 @@ public sealed record Update{entityName}Command(int Id, string Campo01, string Ca
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Update{entityName}Command.cs", updateCommandCode);
     Console.WriteLine("Arquivo criado: Update{0}Command.cs", entityName);
 
-    var updateCommandHandlerCode = $@"using Application.Common.Exceptions;
-using Domain.Entities;
-using Domain.Interfaces;
+    var updateCommandHandlerCode = $@"using Template.Application.Common.Exceptions;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Throw;
 
-namespace Application.Features.{entityNamePlularized}.Commands;
+namespace Template.Application.Features.{entityNamePlularized}.Commands;
 
 /// <summary>
 /// Update{entityName}CommandHandler é responsável por processar o comando Update{entityName}Command.
@@ -667,10 +667,10 @@ public sealed class Update{entityName}CommandHandler : IRequestHandler<Update{en
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Update{entityName}CommandHandler.cs", updateCommandHandlerCode);
     Console.WriteLine("Arquivo criado: Update{0}CommandHandler.cs", entityName);
 
-    var updateCommandValidatorCode = $@"using Domain.Constants;
+    var updateCommandValidatorCode = $@"using Template.Domain.Constants;
 using FluentValidation;
 
-namespace Application.Features.{entityNamePlularized}.Commands;
+namespace Template.Application.Features.{entityNamePlularized}.Commands;
 
 /// <summary>
 /// Update{entityName}CommandValidator é responsável por validar o comando Update{entityName}Command.
@@ -691,15 +691,15 @@ public sealed class Update{entityName}CommandValidator : AbstractValidator<Updat
 
     // Event Handlers
 
-    var createNotificationHandlerCode = $@"using Application.Common.Interfaces;
-using Domain.Entities;
-using Domain.Events.{entityName}Events;
-using Domain.Interfaces;
+    var createNotificationHandlerCode = $@"using Template.Application.Common.Interfaces;
+using Template.Domain.Entities;
+using Template.Domain.Events.{entityName}Events;
+using Template.Domain.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.{entityNamePlularized}.EventHandlers;
+namespace Template.Application.Features.{entityNamePlularized}.EventHandlers;
 
 /// <summary>
 /// Classe responsável por tratar a notificação do evento de {entityNameLower} criado.
@@ -742,15 +742,15 @@ public class {entityName}CreatedNotificationHandler : INotificationHandler<{enti
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/EventHandlers/{entityName}CreatedNotificationHandler.cs", createNotificationHandlerCode);
     Console.WriteLine("Arquivo criado: {0}CreatedNotificationHandler.cs", entityName);
 
-    var deleteNotificationHandlerCode = $@"using Application.Common.Interfaces;
-using Domain.Entities;
-using Domain.Events.{entityName}Events;
-using Domain.Interfaces;
+    var deleteNotificationHandlerCode = $@"using Template.Application.Common.Interfaces;
+using Template.Domain.Entities;
+using Template.Domain.Events.{entityName}Events;
+using Template.Domain.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.{entityNamePlularized}.EventHandlers;
+namespace Template.Application.Features.{entityNamePlularized}.EventHandlers;
 
 /// <summary>
 /// Classe responsável por tratar a notificação do evento de {entityNameLower} excluído.
@@ -800,15 +800,15 @@ public class {entityName}DeletedNotificationHandler : INotificationHandler<{enti
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/EventHandlers/{entityName}DeletedNotificationHandler.cs", deleteNotificationHandlerCode);
     Console.WriteLine("Arquivo criado: {0}DeletedNotificationHandler.cs", entityName);
 
-    var updateNotificationHandlerCode = $@"using Application.Common.Interfaces;
-using Domain.Entities;
-using Domain.Events.{entityName}Events;
-using Domain.Interfaces;
+    var updateNotificationHandlerCode = $@"using Template.Application.Common.Interfaces;
+using Template.Domain.Entities;
+using Template.Domain.Events.{entityName}Events;
+using Template.Domain.Interfaces;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.{entityNamePlularized}.EventHandlers;
+namespace Template.Application.Features.{entityNamePlularized}.EventHandlers;
 
 /// <summary>
 /// Classe responsável por tratar a notificação do evento de {entityNameLower} atualizado.
@@ -864,14 +864,14 @@ public class {entityName}UpdatedNotificationHandler : INotificationHandler<{enti
 
     var responseCode = $@"using System;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 public sealed record {entityName}Response(int Id, string Campo01, string Campo02, DateTime Created, string CreatedBy);
 ";
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/{entityName}Response.cs", responseCode);
     Console.WriteLine("Arquivo criado: {0}Response.cs", entityName);
 
-    var summaryResponseCode = $@"namespace Application.Features.{entityNamePlularized}.Queries;
+    var summaryResponseCode = $@"namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 /// <summary>
 /// Classe que representa a resposta resumida de um {entityNameLower}.
@@ -883,7 +883,7 @@ public sealed record {entityName}SummaryResponse(int Id, string Campo01, string 
 
     var pagedResponseCode = $@"using System.Collections.ObjectModel;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 /// <summary>
 /// Classe que representa a resposta paginada de {entityNamePlularizedLower}.
@@ -893,11 +893,11 @@ public sealed record Paged{entityName}Response(int PageNumber, int PageSize, int
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Paged{entityName}Response.cs", pagedResponseCode);
     Console.WriteLine("Arquivo criado: Paged{0}Response.cs", entityName);
 
-    var getByIdQueryCode = $@"using Application.Common.Cache;
-using Application.Common.Interfaces;
+    var getByIdQueryCode = $@"using Template.Application.Common.Cache;
+using Template.Application.Common.Interfaces;
 using MediatR;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 public sealed class Get{entityName}ByIdQuery : CacheableQueryBase, IRequest<{entityName}Response>, ICacheable
 {{
@@ -913,16 +913,16 @@ public sealed class Get{entityName}ByIdQuery : CacheableQueryBase, IRequest<{ent
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityName}ByIdQuery.cs", getByIdQueryCode);
     Console.WriteLine("Arquivo criado: Get{0}ByIdQuery.cs", entityName);
 
-    var getByIdQueryHandlerCode = $@"using Application.Common.Exceptions;
-using Domain.Entities;
-using Domain.Interfaces;
+    var getByIdQueryHandlerCode = $@"using Template.Application.Common.Exceptions;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 using Mapster;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Throw;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 public sealed class Get{entityName}ByIdQueryHandler : IRequestHandler<Get{entityName}ByIdQuery, {entityName}Response>
 {{
@@ -946,12 +946,12 @@ public sealed class Get{entityName}ByIdQueryHandler : IRequestHandler<Get{entity
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityName}ByIdQueryHandler.cs", getByIdQueryHandlerCode);
     Console.WriteLine("Arquivo criado: Get{0}ByIdQueryHandler.cs", entityName);
 
-    var getByCampo02QueryCode = $@"using Application.Common.Cache;
-using Application.Common.Interfaces;
+    var getByCampo02QueryCode = $@"using Template.Application.Common.Cache;
+using Template.Application.Common.Interfaces;
 using MediatR;
 using System.Collections.Generic;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 public sealed class Get{entityNamePlularized}ByCampo02Query : CacheableQueryBase, IRequest<IEnumerable<{entityName}SummaryResponse>>, ICacheable
 {{
@@ -967,8 +967,8 @@ public sealed class Get{entityNamePlularized}ByCampo02Query : CacheableQueryBase
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}ByCampo02Query.cs", getByCampo02QueryCode);
     Console.WriteLine("Arquivo criado: Get{0}ByCampo02Query.cs", entityNamePlularized);
 
-    var getByCampo02QueryHandlerCode = $@"using Domain.Entities;
-using Domain.Interfaces;
+    var getByCampo02QueryHandlerCode = $@"using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 using Mapster;
 using MediatR;
 using System;
@@ -977,7 +977,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 public sealed class Get{entityNamePlularized}ByCampo02QueryHandler : IRequestHandler<Get{entityNamePlularized}ByCampo02Query, IEnumerable<{entityName}SummaryResponse>>
 {{
@@ -999,12 +999,12 @@ public sealed class Get{entityNamePlularized}ByCampo02QueryHandler : IRequestHan
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}ByCampo02QueryHandler.cs", getByCampo02QueryHandlerCode);
     Console.WriteLine("Arquivo criado: Get{0}ByCampo02QueryHandler.cs", entityNamePlularized);
 
-    var getQueryCode = $@"using Application.Common.Cache;
-using Application.Common.Interfaces;
-using Application.Features.Base;
+    var getQueryCode = $@"using Template.Application.Common.Cache;
+using Template.Application.Common.Interfaces;
+using Template.Application.Features.Base;
 using MediatR;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 /// <summary>
 /// Classe de consulta que representa a solicitação para obter todos os {entityNamePlularizedLower}.
@@ -1025,13 +1025,13 @@ public sealed class Get{entityNamePlularized}Query : CacheableQueryBase, IReques
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}Query.cs", getQueryCode);
     Console.WriteLine("Arquivo criado: Get{0}Query.cs", entityNamePlularized);
 
-    var getQueryHandlerCode = $@"using Application.Features.Base;
-using Domain.Entities;
-using Domain.Interfaces;
+    var getQueryHandlerCode = $@"using Template.Application.Features.Base;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 /// <summary>
 /// Classe responsável por tratar a consulta para obter todos os {entityNamePlularizedLower}.
@@ -1080,9 +1080,9 @@ public sealed class Get{entityNamePlularized}QueryHandler : PagedQueryHandlerBas
     File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}QueryHandler.cs", getQueryHandlerCode);
     Console.WriteLine("Arquivo criado: Get{0}QueryHandler.cs", entityNamePlularized);
 
-    var getQueryValidatorCode = $@"using Application.Features.Base;
+    var getQueryValidatorCode = $@"using Template.Application.Features.Base;
 
-namespace Application.Features.{entityNamePlularized}.Queries;
+namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 /// <summary>
 /// Classe que valida a consulta para obter todos os {entityNamePlularizedLower}.

@@ -1,19 +1,17 @@
-﻿using Application.Features.Customers.Queries;
-using Domain.Entities;
-using Domain.Interfaces;
-using FluentAssertions;
+﻿using FluentAssertions;
+using Microsoft.Extensions.Options;
 using Moq;
 using Moq.AutoMock;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Common.Interfaces;
-using Application.Settings;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.DependencyInjection;
+using Template.Application.Common.Interfaces;
+using Template.Application.Features.Customers.Queries;
+using Template.Application.Settings;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 
 namespace Template.Application.Tests.Features.Customers.Queries;
 

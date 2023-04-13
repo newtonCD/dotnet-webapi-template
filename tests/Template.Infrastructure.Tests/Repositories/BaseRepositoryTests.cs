@@ -1,12 +1,12 @@
-﻿using Domain.Entities;
-using Infrastructure.Persistance;
-using Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Template.Domain.Entities;
+using Template.Infrastructure.Persistance;
+using Template.Infrastructure.Repositories;
 
 namespace Template.Infrastructure.Tests.Repositories;
 
