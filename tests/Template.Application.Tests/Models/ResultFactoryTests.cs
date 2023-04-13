@@ -1,5 +1,5 @@
-﻿using Application.Common.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Template.Application.Common.Models;
 
 namespace Template.Application.Tests.Models;
 

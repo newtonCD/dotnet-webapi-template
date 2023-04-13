@@ -1,17 +1,14 @@
-﻿using Application.Common.Exceptions;
-using Application.Common.Interfaces;
-using Application.Features.Customers.Queries;
-using Application.Settings;
-using Domain.Entities;
-using Domain.Interfaces;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Template.Application.Common.Exceptions;
+using Template.Application.Common.Interfaces;
+using Template.Application.Features.Customers.Queries;
+using Template.Application.Settings;
+using Template.Domain.Entities;
+using Template.Domain.Interfaces;
 
 namespace Template.Application.Tests.Features.Customers.Queries;
 

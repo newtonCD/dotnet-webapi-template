@@ -1,18 +1,14 @@
-﻿using Application.Common;
-using Application.Common.Interfaces;
-using Application.Features.Customers.EventHandlers;
-using Domain.Entities;
-using Domain.Events.CustomerEvents;
-using Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Linq;
+using Template.Application.Common.Interfaces;
+using Template.Application.Features.Customers.EventHandlers;
+using Template.Domain.Entities;
+using Template.Domain.Events.CustomerEvents;
+using Template.Domain.Interfaces;
 
 namespace Template.Application.Tests.Features.Customers.EventHandlers;
 

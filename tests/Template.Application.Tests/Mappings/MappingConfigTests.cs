@@ -1,12 +1,8 @@
-﻿using Application.Common.Mappings;
-using Application.Common.Models.DTOs;
-using Domain.Entities;
-using Mapster;
+﻿using Mapster;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Template.Application.Common.Mappings;
+using Template.Application.Common.Models.DTOs;
+using Template.Domain.Entities;
 
 namespace Template.Application.Tests.Mappings;
 

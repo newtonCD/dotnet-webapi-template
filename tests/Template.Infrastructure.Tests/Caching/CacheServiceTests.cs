@@ -1,14 +1,11 @@
-﻿using Application.Common.Interfaces;
-using Infrastructure.Caching;
-using Microsoft.Extensions.Caching.Distributed;
+﻿using Microsoft.Extensions.Caching.Distributed;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Template.Application.Common.Interfaces;
+using Template.Infrastructure.Caching;
 
 namespace Template.Infrastructure.Tests.Caching;
 

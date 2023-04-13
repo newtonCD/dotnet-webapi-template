@@ -1,10 +1,10 @@
-﻿using Application.Common.Behaviors;
-using Application.Common.Interfaces;
-using MediatR;
+﻿using MediatR;
 using Moq;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Template.Application.Common.Behaviors;
+using Template.Application.Common.Interfaces;
 
 namespace Template.Application.Tests.Behaviors;
 

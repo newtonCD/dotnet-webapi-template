@@ -26,10 +26,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Application\Application.csproj" />
-      <ProjectReference Include="..\..\src\Domain\Domain.csproj" />
-      <ProjectReference Include="..\..\src\Infrastructure\Infrastructure.csproj" />
-      <ProjectReference Include="..\..\src\WebApi\WebApi.csproj" />
+      <ProjectReference Include="..\..\src\Template.Application\Template.Application.csproj" />
+      <ProjectReference Include="..\..\src\Template.Domain\Template.Domain.csproj" />
+      <ProjectReference Include="..\..\src\Template.Infrastructure\Template.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\src\Template.WebApi\Template.WebApi.csproj" />
     </ItemGroup>
 
 </Project>

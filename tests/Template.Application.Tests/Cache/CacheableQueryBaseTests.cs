@@ -1,9 +1,9 @@
-﻿using Application.Common.Cache;
-using Application.Common.Interfaces;
-using Application.Settings;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Moq;
 using System;
+using Template.Application.Common.Cache;
+using Template.Application.Common.Interfaces;
+using Template.Application.Settings;
 
 namespace Template.Application.Tests.Cache;
 
