@@ -4,7 +4,7 @@ using System.Reflection;
 namespace Template.Application;
 
 [ExcludeFromCodeCoverage]
-public static class AssemblyEntryPoint
+public static class AssemblyReference
 {
-    public static readonly Assembly Assembly = typeof(AssemblyEntryPoint).Assembly;
+    public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
 }

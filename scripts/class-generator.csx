@@ -17,7 +17,7 @@ if (Args.Count() > 0)
     className = className.Singularize(inputIsKnownToBePlural: false);
     className = className.Pascalize();
 
-    if (File.Exists($"../src/Domain/Entities/{className}.cs"))
+    if (File.Exists($"../src/Template.Domain/Entities/{className}.cs"))
     {
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($"Já existe uma entidade de domínio com o nome {className}. Tente outro nome.");
@@ -41,10 +41,10 @@ if (Args.Count() > 0)
     GenerateCQRSFiles(className);
 
     string IAppDbContextBaseInsertionString = $@"    DbSet<{className}> {entityNamePlularized} {{ get; }}";
-    UpdateFile("../src/Domain/Interfaces/IAppDbContextBase.cs", searchString, IAppDbContextBaseInsertionString);
+    UpdateFile("../src/Template.Domain/Interfaces/IAppDbContextBase.cs", searchString, IAppDbContextBaseInsertionString);
 
     string appDbContextBaseInsertionString = $@"    public DbSet<{className}> {entityNamePlularized} => Set<{className}>();";
-    UpdateFile("../src/Infrastructure/Persistance/AppDbContextBase.cs", searchString, appDbContextBaseInsertionString);
+    UpdateFile("../src/Template.Infrastructure/Persistance/AppDbContextBase.cs", searchString, appDbContextBaseInsertionString);
 
     string testAppQueryDbContextInsertionString = $@"    public DbSet<{className}> {entityNamePlularized} {{ get; set; }}";
     UpdateFile("../tests/Template.Application.Tests/TestAppQueryDbContext.cs", searchString, testAppQueryDbContextInsertionString);
@@ -60,24 +60,24 @@ void GenerateFolders(string entityName)
 {
     var entityNamePlularized = entityName.Pluralize(inputIsKnownToBeSingular: false);
 
-    if (!System.IO.Directory.Exists($"../src/Domain/Events/{entityName}Events"))
+    if (!System.IO.Directory.Exists($"../src/Template.Domain/Events/{entityName}Events"))
     {
-        System.IO.Directory.CreateDirectory($"../src/Domain/Events/{entityName}Events");
+        System.IO.Directory.CreateDirectory($"../src/Template.Domain/Events/{entityName}Events");
     }
 
-    if (!System.IO.Directory.Exists($"../src/Application/Features/{entityNamePlularized}/Commands"))
+    if (!System.IO.Directory.Exists($"../src/Template.Application/Features/{entityNamePlularized}/Commands"))
     {
-        System.IO.Directory.CreateDirectory($"../src/Application/Features/{entityNamePlularized}/Commands");
+        System.IO.Directory.CreateDirectory($"../src/Template.Application/Features/{entityNamePlularized}/Commands");
     }
 
-    if (!System.IO.Directory.Exists($"../src/Application/Features/{entityNamePlularized}/EventHandlers"))
+    if (!System.IO.Directory.Exists($"../src/Template.Application/Features/{entityNamePlularized}/EventHandlers"))
     {
-        System.IO.Directory.CreateDirectory($"../src/Application/Features/{entityNamePlularized}/EventHandlers");
+        System.IO.Directory.CreateDirectory($"../src/Template.Application/Features/{entityNamePlularized}/EventHandlers");
     }
 
-    if (!System.IO.Directory.Exists($"../src/Application/Features/{entityNamePlularized}/Queries"))
+    if (!System.IO.Directory.Exists($"../src/Template.Application/Features/{entityNamePlularized}/Queries"))
     {
-        System.IO.Directory.CreateDirectory($"../src/Application/Features/{entityNamePlularized}/Queries");
+        System.IO.Directory.CreateDirectory($"../src/Template.Application/Features/{entityNamePlularized}/Queries");
     }
 
     Console.WriteLine("Criada a estrutura de pastas.", entityName);
@@ -142,7 +142,7 @@ public class {entityName} : BaseAuditableEntity
         _domainEvents.Add(new {entityName}UpdatedEventNotification(Id, Campo01, Campo02, DateTime.UtcNow));
     }}
 }}";
-    File.WriteAllText($"../src/Domain/Entities/{entityName}.cs", entityCode);
+    File.WriteAllText($"../src/Template.Domain/Entities/{entityName}.cs", entityCode);
     Console.WriteLine("Arquivo criado: {0}.cs", entityName);
 }
 
@@ -168,7 +168,7 @@ public class {entityName}CreatedEventNotification : INotification
     public string Campo02 {{ get; }}
     public DateTime EventDateTime {{ get; }}
 }}";
-    File.WriteAllText($"../src/Domain/Events/{entityName}Events/{entityName}CreatedEventNotification.cs", createdEventNotificationCode);
+    File.WriteAllText($"../src/Template.Domain/Events/{entityName}Events/{entityName}CreatedEventNotification.cs", createdEventNotificationCode);
     Console.WriteLine("Arquivo criado: {0}CreatedEventNotification.cs", entityName);
 }
 
@@ -190,7 +190,7 @@ public class {entityName}DeletedEventNotification : INotification
     public int {entityName}Id {{ get; }}
     public DateTime EventDateTime {{ get; }}
 }}";
-    File.WriteAllText($"../src/Domain/Events/{entityName}Events/{entityName}DeletedEventNotification.cs", deletedEventNotificationCode);
+    File.WriteAllText($"../src/Template.Domain/Events/{entityName}Events/{entityName}DeletedEventNotification.cs", deletedEventNotificationCode);
     Console.WriteLine("Arquivo criado: {0}DeletedEventNotification.cs", entityName);
 }
 
@@ -216,7 +216,7 @@ public class {entityName}UpdatedEventNotification : INotification
     public string Campo02 {{ get; }}
     public DateTime EventDateTime {{ get; }}
 }}";
-    File.WriteAllText($"../src/Domain/Events/{entityName}Events/{entityName}UpdatedEventNotification.cs", updatedEventNotificationCode);
+    File.WriteAllText($"../src/Template.Domain/Events/{entityName}Events/{entityName}UpdatedEventNotification.cs", updatedEventNotificationCode);
     Console.WriteLine("Arquivo criado: {0}UpdatedEventNotification.cs", entityName);
 }
 
@@ -229,7 +229,7 @@ namespace Template.Domain.Interfaces;
 public interface I{entityName}Repository : IBaseRepository<{entityName}>
 {{
 }}";
-    File.WriteAllText($"../src/Domain/Interfaces/I{entityName}Repository.cs", domainInterfaceCode);
+    File.WriteAllText($"../src/Template.Domain/Interfaces/I{entityName}Repository.cs", domainInterfaceCode);
     Console.WriteLine("Arquivo criado: I{0}Repository.cs", entityName);
 }
 
@@ -243,7 +243,7 @@ public class {entityName}Dto
     public string Campo01 {{ get; set; }}
     public string Campo02 {{ get; set; }}
 }}";
-    File.WriteAllText($"../src/Application/Common/Models/DTOs/{entityName}Dto.cs", dtoCode);
+    File.WriteAllText($"../src/Template.Application/Common/Models/DTOs/{entityName}Dto.cs", dtoCode);
     Console.WriteLine("Arquivo criado: {0}Dto.cs", entityName);
 }
 
@@ -269,7 +269,7 @@ public class {entityName}Configuration : IEntityTypeConfiguration<{entityName}>
         builder.Property(c => c.Campo02).IsRequired().HasMaxLength(100);
     }}
 }}";
-    File.WriteAllText($"../src/Infrastructure/Configurations/{entityName}Configuration.cs", configurationsCode);
+    File.WriteAllText($"../src/Template.Infrastructure/Configurations/{entityName}Configuration.cs", configurationsCode);
     Console.WriteLine("Arquivo criado: {0}Configuration.cs", entityName);
 }
 
@@ -288,7 +288,7 @@ public class {entityName}Repository : BaseRepository<{entityName}>, I{entityName
     {{
     }}
 }}";
-    File.WriteAllText($"../src/Infrastructure/Repositories/{entityName}Repository.cs", repositoryCode);
+    File.WriteAllText($"../src/Template.Infrastructure/Repositories/{entityName}Repository.cs", repositoryCode);
     Console.WriteLine("Arquivo criado: {0}Repository.cs", entityName);
 }
 
@@ -415,7 +415,7 @@ public sealed class {entityName}Controller : ApiControllerBase
         return Ok({entityNamePlularizedLower});
     }}
 }}";
-    File.WriteAllText($"../src/WebApi/Controllers/V1/{entityName}Controller.cs", controllerCode);
+    File.WriteAllText($"../src/Template.WebApi/Controllers/V1/{entityName}Controller.cs", controllerCode);
     Console.WriteLine("Arquivo criado: {0}Controller.cs", entityName);
 }
 
@@ -433,7 +433,7 @@ namespace Template.Application.Features.{entityNamePlularized}.Commands;
 /// </summary>
 public sealed record Create{entityName}Command(string Campo01, string Campo02) : IRequest<Result<int>>;
 ";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Create{entityName}Command.cs", createCommandCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Commands/Create{entityName}Command.cs", createCommandCode);
     Console.WriteLine("Arquivo criado: Create{0}Command.cs", entityName);
 
     var createCommandHandlerCode = $@"using Template.Application.Common.Models;
@@ -497,7 +497,7 @@ public sealed class Create{entityName}CommandHandler : IRequestHandler<Create{en
         return ResultFactory.Success({entityNameLower}.Id);
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Create{entityName}CommandHandler.cs", createCommandHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Commands/Create{entityName}CommandHandler.cs", createCommandHandlerCode);
     Console.WriteLine("Arquivo criado: Create{0}CommandHandler.cs", entityName);
 
     var createCommandValidatorCode = $@"using Template.Domain.Constants;
@@ -513,7 +513,7 @@ public sealed class Create{entityName}CommandValidator : AbstractValidator<Creat
         RuleFor(x => x.Campo02).NotEmpty().WithMessage(ValidationMessages.RequiredField);
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Create{entityName}CommandValidator.cs", createCommandValidatorCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Commands/Create{entityName}CommandValidator.cs", createCommandValidatorCode);
     Console.WriteLine("Arquivo criado: Create{0}CommandValidator.cs", entityName);
 
     var deleteCommandCode = $@"using MediatR;
@@ -525,7 +525,7 @@ namespace Template.Application.Features.{entityNamePlularized}.Commands;
 /// </summary>
 public sealed record Delete{entityName}Command(int Id) : IRequest;
 ";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Delete{entityName}Command.cs", deleteCommandCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Commands/Delete{entityName}Command.cs", deleteCommandCode);
     Console.WriteLine("Arquivo criado: Delete{0}Command.cs", entityName);
 
     var deleteCommandHandlerCode = $@"using Template.Application.Common.Exceptions;
@@ -588,7 +588,7 @@ public sealed class Delete{entityName}CommandHandler : IRequestHandler<Delete{en
     }}
 }}
 ";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Delete{entityName}CommandHandler.cs", deleteCommandHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Commands/Delete{entityName}CommandHandler.cs", deleteCommandHandlerCode);
     Console.WriteLine("Arquivo criado: Delete{0}CommandHandler.cs", entityName);
 
     var updateCommandCode = $@"using MediatR;
@@ -600,7 +600,7 @@ namespace Template.Application.Features.{entityNamePlularized}.Commands;
 /// </summary>
 public sealed record Update{entityName}Command(int Id, string Campo01, string Campo02) : IRequest;
 ";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Update{entityName}Command.cs", updateCommandCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Commands/Update{entityName}Command.cs", updateCommandCode);
     Console.WriteLine("Arquivo criado: Update{0}Command.cs", entityName);
 
     var updateCommandHandlerCode = $@"using Template.Application.Common.Exceptions;
@@ -664,7 +664,7 @@ public sealed class Update{entityName}CommandHandler : IRequestHandler<Update{en
         await _unitOfWork.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Update{entityName}CommandHandler.cs", updateCommandHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Commands/Update{entityName}CommandHandler.cs", updateCommandHandlerCode);
     Console.WriteLine("Arquivo criado: Update{0}CommandHandler.cs", entityName);
 
     var updateCommandValidatorCode = $@"using Template.Domain.Constants;
@@ -686,7 +686,7 @@ public sealed class Update{entityName}CommandValidator : AbstractValidator<Updat
         RuleFor(x => x.Campo02).NotEmpty().WithMessage(ValidationMessages.RequiredField);
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Commands/Update{entityName}CommandValidator.cs", updateCommandValidatorCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Commands/Update{entityName}CommandValidator.cs", updateCommandValidatorCode);
     Console.WriteLine("Arquivo criado: Update{0}CommandValidator.cs", entityName);
 
     // Event Handlers
@@ -739,7 +739,7 @@ public class {entityName}CreatedNotificationHandler : INotificationHandler<{enti
         await _queryDbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/EventHandlers/{entityName}CreatedNotificationHandler.cs", createNotificationHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/EventHandlers/{entityName}CreatedNotificationHandler.cs", createNotificationHandlerCode);
     Console.WriteLine("Arquivo criado: {0}CreatedNotificationHandler.cs", entityName);
 
     var deleteNotificationHandlerCode = $@"using Template.Application.Common.Interfaces;
@@ -797,7 +797,7 @@ public class {entityName}DeletedNotificationHandler : INotificationHandler<{enti
         }}
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/EventHandlers/{entityName}DeletedNotificationHandler.cs", deleteNotificationHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/EventHandlers/{entityName}DeletedNotificationHandler.cs", deleteNotificationHandlerCode);
     Console.WriteLine("Arquivo criado: {0}DeletedNotificationHandler.cs", entityName);
 
     var updateNotificationHandlerCode = $@"using Template.Application.Common.Interfaces;
@@ -857,7 +857,7 @@ public class {entityName}UpdatedNotificationHandler : INotificationHandler<{enti
         }}
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/EventHandlers/{entityName}UpdatedNotificationHandler.cs", updateNotificationHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/EventHandlers/{entityName}UpdatedNotificationHandler.cs", updateNotificationHandlerCode);
     Console.WriteLine("Arquivo criado: {0}UpdatedNotificationHandler.cs", entityName);
 
     // Queries
@@ -868,7 +868,7 @@ namespace Template.Application.Features.{entityNamePlularized}.Queries;
 
 public sealed record {entityName}Response(int Id, string Campo01, string Campo02, DateTime Created, string CreatedBy);
 ";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/{entityName}Response.cs", responseCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/{entityName}Response.cs", responseCode);
     Console.WriteLine("Arquivo criado: {0}Response.cs", entityName);
 
     var summaryResponseCode = $@"namespace Template.Application.Features.{entityNamePlularized}.Queries;
@@ -878,7 +878,7 @@ public sealed record {entityName}Response(int Id, string Campo01, string Campo02
 /// </summary>
 public sealed record {entityName}SummaryResponse(int Id, string Campo01, string Campo02);
 ";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/{entityName}SummaryResponse.cs", summaryResponseCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/{entityName}SummaryResponse.cs", summaryResponseCode);
     Console.WriteLine("Arquivo criado: {0}SummaryResponse.cs", entityName);
 
     var pagedResponseCode = $@"using System.Collections.ObjectModel;
@@ -890,7 +890,7 @@ namespace Template.Application.Features.{entityNamePlularized}.Queries;
 /// </summary>
 public sealed record Paged{entityName}Response(int PageNumber, int PageSize, int TotalPages, int TotalItems, Collection<{entityName}SummaryResponse> Items);
 ";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Paged{entityName}Response.cs", pagedResponseCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/Paged{entityName}Response.cs", pagedResponseCode);
     Console.WriteLine("Arquivo criado: Paged{0}Response.cs", entityName);
 
     var getByIdQueryCode = $@"using Template.Application.Common.Cache;
@@ -910,7 +910,7 @@ public sealed class Get{entityName}ByIdQuery : CacheableQueryBase, IRequest<{ent
 
     public override string CacheKey => $""{entityName}:{{{entityName}Id}}"";
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityName}ByIdQuery.cs", getByIdQueryCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/Get{entityName}ByIdQuery.cs", getByIdQueryCode);
     Console.WriteLine("Arquivo criado: Get{0}ByIdQuery.cs", entityName);
 
     var getByIdQueryHandlerCode = $@"using Template.Application.Common.Exceptions;
@@ -943,7 +943,7 @@ public sealed class Get{entityName}ByIdQueryHandler : IRequestHandler<Get{entity
         return {entityNameLower}.Adapt<{entityName}Response>();
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityName}ByIdQueryHandler.cs", getByIdQueryHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/Get{entityName}ByIdQueryHandler.cs", getByIdQueryHandlerCode);
     Console.WriteLine("Arquivo criado: Get{0}ByIdQueryHandler.cs", entityName);
 
     var getByCampo02QueryCode = $@"using Template.Application.Common.Cache;
@@ -964,7 +964,7 @@ public sealed class Get{entityNamePlularized}ByCampo02Query : CacheableQueryBase
 
     public override string CacheKey => $""{entityName}:Campo02:{{Campo02}}"";
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}ByCampo02Query.cs", getByCampo02QueryCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}ByCampo02Query.cs", getByCampo02QueryCode);
     Console.WriteLine("Arquivo criado: Get{0}ByCampo02Query.cs", entityNamePlularized);
 
     var getByCampo02QueryHandlerCode = $@"using Template.Domain.Entities;
@@ -996,7 +996,7 @@ public sealed class Get{entityNamePlularized}ByCampo02QueryHandler : IRequestHan
         return {entityNamePlularizedLower}.Adapt<IEnumerable<{entityName}SummaryResponse>>();
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}ByCampo02QueryHandler.cs", getByCampo02QueryHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}ByCampo02QueryHandler.cs", getByCampo02QueryHandlerCode);
     Console.WriteLine("Arquivo criado: Get{0}ByCampo02QueryHandler.cs", entityNamePlularized);
 
     var getQueryCode = $@"using Template.Application.Common.Cache;
@@ -1022,7 +1022,7 @@ public sealed class Get{entityNamePlularized}Query : CacheableQueryBase, IReques
 
     public override string CacheKey => $""{entityName}:Paging:{{PageNumber}}_{{PageSize}}"";
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}Query.cs", getQueryCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}Query.cs", getQueryCode);
     Console.WriteLine("Arquivo criado: Get{0}Query.cs", entityNamePlularized);
 
     var getQueryHandlerCode = $@"using Template.Application.Features.Base;
@@ -1077,7 +1077,7 @@ public sealed class Get{entityNamePlularized}QueryHandler : PagedQueryHandlerBas
         return new Paged{entityName}Response(pageNumber, pageSize, totalPages, totalItems, new Collection<{entityName}SummaryResponse>(items.ToList()));
     }}
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}QueryHandler.cs", getQueryHandlerCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}QueryHandler.cs", getQueryHandlerCode);
     Console.WriteLine("Arquivo criado: Get{0}QueryHandler.cs", entityNamePlularized);
 
     var getQueryValidatorCode = $@"using Template.Application.Features.Base;
@@ -1090,7 +1090,7 @@ namespace Template.Application.Features.{entityNamePlularized}.Queries;
 public sealed class Get{entityNamePlularized}QueryValidator : GetPagingQueryValidator<Get{entityNamePlularized}Query>
 {{
 }}";
-    File.WriteAllText($"../src/Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}QueryValidator.cs", getQueryValidatorCode);
+    File.WriteAllText($"../src/Template.Application/Features/{entityNamePlularized}/Queries/Get{entityNamePlularized}QueryValidator.cs", getQueryValidatorCode);
     Console.WriteLine("Arquivo criado: Get{0}QueryValidator.cs", entityNamePlularized);
 }
 

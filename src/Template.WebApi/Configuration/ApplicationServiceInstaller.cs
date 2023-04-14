@@ -14,7 +14,7 @@ public class ApplicationServiceInstaller : IServiceInstaller
     {
         services.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssembly(Application.AssemblyEntryPoint.Assembly);
+            cfg.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly);
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(PollyRetryBehavior<,>));
             cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
@@ -22,7 +22,7 @@ public class ApplicationServiceInstaller : IServiceInstaller
         });
 
         services.AddValidatorsFromAssembly(
-            Application.AssemblyEntryPoint.Assembly,
+            Application.AssemblyReference.Assembly,
             includeInternalTypes: true);
     }
 }

@@ -15,7 +15,7 @@ public class CleanArchitectureTests
     public void Domain_Should_Not_Have_Dependency_On_Other_Projects()
     {
         // Arrange
-        var assembly = typeof(Template.Domain.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.Domain.AssemblyReference).Assembly;
 
         var otherProjects = new[]
         {
@@ -39,7 +39,7 @@ public class CleanArchitectureTests
     public void Application_Should_Not_Have_Dependency_On_Other_Projects()
     {
         // Arrange
-        var assembly = typeof(Template.Application.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.Application.AssemblyReference).Assembly;
 
         var otherProjects = new[]
         {
@@ -62,7 +62,7 @@ public class CleanArchitectureTests
     public void Handlers_Should_Have_Dependency_On_Domain()
     {
         // Arrange
-        var assembly = typeof(Template.Application.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.Application.AssemblyReference).Assembly;
 
         //Act
         var testResult = Types
@@ -81,7 +81,7 @@ public class CleanArchitectureTests
     public void Infrastructure_Should_Not_Have_Dependency_On_Other_Projects()
     {
         // Arrange
-        var assembly = typeof(Template.Infrastructure.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.Infrastructure.AssemblyReference).Assembly;
 
         var otherProjects = new[]
         {
@@ -103,7 +103,7 @@ public class CleanArchitectureTests
     public void Controllers_Should_Have_Dependency_On_MediatR()
     {
         // Arrange
-        var assembly = typeof(Template.WebApi.AssemblyEntryPoint).Assembly;
+        var assembly = typeof(Template.WebApi.AssemblyReference).Assembly;
 
         //Act
         var testResult = Types
