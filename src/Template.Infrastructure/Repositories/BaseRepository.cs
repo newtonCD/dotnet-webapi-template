@@ -26,12 +26,18 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
     {
-        return await _queryContext.Set<TEntity>().ToListAsync().ConfigureAwait(false);
+        return await _queryContext.Set<TEntity>()
+                    .AsNoTracking()
+                    .ToListAsync()
+                    .ConfigureAwait(false);
     }
 
     public virtual async Task<TEntity?> GetByIdAsync(int id)
     {
-        return await _queryContext.Set<TEntity>().FindAsync(id).ConfigureAwait(false);
+        return await _queryContext.Set<TEntity>()
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(o => o.Id == id)
+                    .ConfigureAwait(false);
     }
 
     public virtual async Task AddAsync(TEntity entity)
@@ -51,22 +57,37 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public virtual async Task<bool> ExistsAsync(int id)
     {
-        return await _queryContext.Set<TEntity>().AnyAsync(x => x.Id == id).ConfigureAwait(false);
+        return await _queryContext.Set<TEntity>()
+                    .AsNoTracking()
+                    .AnyAsync(x => x.Id == id)
+                    .ConfigureAwait(false);
     }
 
     public virtual async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
     {
-        return await _queryContext.Set<TEntity>().Where(predicate).ToListAsync().ConfigureAwait(false);
+        return await _queryContext.Set<TEntity>()
+                    .AsNoTracking()
+                    .Where(predicate)
+                    .ToListAsync()
+                    .ConfigureAwait(false);
     }
 
     public virtual async Task<int> CountAsync()
     {
-        return await _queryContext.Set<TEntity>().CountAsync().ConfigureAwait(false);
+        return await _queryContext.Set<TEntity>()
+                    .AsNoTracking()
+                    .CountAsync()
+                    .ConfigureAwait(false);
     }
 
     public virtual async Task<List<TEntity>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default)
     {
         int skip = (pageNumber - 1) * pageSize;
-        return await _queryContext.Set<TEntity>().Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
+        return await _queryContext.Set<TEntity>()
+                    .AsNoTracking()
+                    .Skip(skip)
+                    .Take(pageSize)
+                    .ToListAsync(cancellationToken)
+                    .ConfigureAwait(false);
     }
 }

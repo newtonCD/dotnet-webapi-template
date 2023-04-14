@@ -14,7 +14,7 @@ public abstract class AppDbContextBase : DbContext, IAppDbContextBase
     }
 
     public DbSet<Customer> Customers => Set<Customer>();
-    // TEMPLATE - nao remover ou alterar essa linha
+// TEMPLATE - nao remover ou alterar essa linha
 
     [ExcludeFromCodeCoverage]
     protected override void OnModelCreating(ModelBuilder modelBuilder)
